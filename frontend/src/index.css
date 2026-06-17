@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─── */
+@theme {
+  --color-surface-0: #06060b;
+  --color-surface-1: #0a0a12;
+  --color-surface-2: #10101c;
+  --color-surface-3: #181828;
+  --color-surface-4: #1e1e32;
+  --color-border: #1e1e30;
+  --color-border-subtle: #14142a;
+  --color-text-primary: #e8e8f0;
+  --color-text-secondary: #8888a8;
+  --color-text-muted: #555570;
+  --color-accent: #a78bfa;
+  --color-accent-dim: #7c5cbf;
+  --color-accent-glow: rgba(167, 139, 250, 0.15);
+  --color-user-bubble: #1a1a3a;
+  --color-ai-bubble: #0e0e1a;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* ─── Base ─── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-surface-4) transparent;
+}
+
+body {
+  @apply bg-surface-0 text-text-primary font-sans antialiased;
+  overflow: hidden;
+}
+
+#root {
+  height: 100dvh;
+  width: 100dvw;
+  overflow: hidden;
+}
+
+/* ─── Scrollbar (Webkit) ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-4);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-dim);
+}
+
+/* ─── Custom Utilities ─── */
+.glass {
+  background: rgba(10, 10, 18, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glow-ring {
+  box-shadow: 0 0 0 1px var(--color-border),
+              0 0 20px var(--color-accent-glow);
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.typing-dot {
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+.typing-dot:nth-child(3) { animation-delay: 0s; }
+
+/* ─── Animations ─── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typingBounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 1px var(--color-border);
+  }
+  50% {
+    box-shadow: 0 0 0 1px var(--color-accent-dim),
+                0 0 16px var(--color-accent-glow);
+  }
+}
