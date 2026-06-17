@@ -2,7 +2,7 @@ import chromadb
 from pathlib import Path
 from services.ollama import generate_embedding
 
-CHROMA_DIR = Path(__file__).parent.parent / "chroma_data"
+CHROMA_DIR = Path(__file__).parent.parent / "chroma_db"
 
 _client: chromadb.ClientAPI | None = None
 _collection: chromadb.Collection | None = None
